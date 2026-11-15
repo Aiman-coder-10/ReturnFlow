@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Order Details</title>
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <h1>Order Details</h1>
+
+    <p>Order ID: {{ items[0].order_id }}</p>
+
+    <p>Customer:
+       {{ items[0].customer_name }}</p>
+
+    <p>Delivery Date:
+       {{ items[0].delivery_date }}</p>
+
+    <h2>Purchased Products</h2>
+
+    <table border="1">
+
+        <tr>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+
+        {% for item in items %}
+
+        <tr>
+
+            <td>{{ item.product_name }}</td>
+
+            <td>{{ item.category }}</td>
+
+            <td>{{ item.quantity }}</td>
+
+            <td>{{ item.unit_price }}</td>
+
+            <td>
+                <a href="/return/{{ item.item_id }}">
+                    Return Item
+                </a>
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    <br>
+
+    <a href="/">Back to Home</a>
+
+</body>
+
+</html>

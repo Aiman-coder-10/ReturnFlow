@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Return Tracking</title>
+    <link rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <h1>Return Management</h1>
+
+    <table border="1">
+
+        <tr>
+            <th>Return ID</th>
+            <th>Order ID</th>
+            <th>Reason</th>
+            <th>Refund</th>
+            <th>Status</th>
+            <th>Update</th>
+        </tr>
+
+        {% for r in returns %}
+
+        <tr>
+
+            <td>{{ r.return_id }}</td>
+
+            <td>{{ r.order_id }}</td>
+
+            <td>{{ r.reason_code }}</td>
+
+            <td>₹{{ r.refund_amount }}</td>
+
+            <td>{{ r.return_status }}</td>
+
+            <td>
+
+                <form action="/update_status"
+                      method="POST">
+
+                    <input type="hidden"
+                           name="return_id"
+                           value="{{ r.return_id }}">
+
+                    <select name="status">
+
+                        <option value="Approved">
+                            Approved
+                        </option>
+
+                        <option value="Rejected">
+                            Rejected
+                        </option>
+
+                        <option value="Picked Up">
+                            Picked Up
+                        </option>
+
+                        <option value="Received">
+                            Received
+                        </option>
+
+                        <option value="Refunded">
+                            Refunded
+                        </option>
+
+                    </select>
+
+                    <button type="submit">
+                        Update
+                    </button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    <br>
+
+    <a href="/">Home</a>
+
+</body>
+
+</html>

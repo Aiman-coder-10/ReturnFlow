@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Return Request</title>
+    <link rel="stylesheet"
+       href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <h1>Submit Return Request</h1>
+
+    <h3>Product Details</h3>
+
+    <p>Product: {{ item.product_name }}</p>
+
+    <p>Category: {{ item.category }}</p>
+
+    <p>Quantity: {{ item.quantity }}</p>
+
+    <p>Price: ₹{{ item.unit_price }}</p>
+
+    <hr>
+
+    <form action="/submit_return" method="POST">
+
+        <input type="hidden"
+               name="item_id"
+               value="{{ item.item_id }}">
+
+        <label>Select Return Reason:</label>
+
+        <br><br>
+
+        <select name="reason_code" required>
+
+            <option value="">
+                Choose a reason
+            </option>
+
+            <option value="DEFECTIVE">
+                Defective Product
+            </option>
+
+            <option value="WRONG_ITEM">
+                Wrong Item Delivered
+            </option>
+
+            <option value="NOT_AS_DESCRIBED">
+                Not as Described
+            </option>
+
+            <option value="SIZE_ISSUE">
+                Size Issue
+            </option>
+
+            <option value="CHANGED_MIND">
+                Changed My Mind
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <button type="submit">
+            Submit Return Request
+        </button>
+
+    </form>
+
+</body>
+
+</html>

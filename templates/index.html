@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ReturnFlow</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>ReturnFlow</h1>
+
+        <h2>Find Your Order</h2>
+
+        <p>Enter your Order ID to view
+           your purchased products.</p>
+
+        <form action="/order" method="POST">
+
+            <input type="number"
+                   name="order_id"
+                   placeholder="Enter Order ID"
+                   required>
+
+            <button type="submit">
+                Search Order
+            </button>
+
+        </form>
+
+        <a href="/returns">Track Returns</a>
+
+        <br><br>
+
+        <a href="/analytics">View Analytics</a>
+
+    </div>
+
+</body>
+</html>

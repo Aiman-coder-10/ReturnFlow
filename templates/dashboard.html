@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Return Analytics</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+     
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <h1>Return Analytics Dashboard</h1>
+
+    <h2>Returns by Reason</h2>
+
+    <table border="1">
+
+        <tr>
+            <th>Reason</th>
+            <th>Total Returns</th>
+        </tr>
+
+        {% for r in results %}
+
+        <tr>
+
+            <td>{{ r.reason_code }}</td>
+
+            <td>{{ r.total_returns }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    <br>
+
+    <canvas id="returnChart"></canvas>
+
+    <script>
+
+        const labels = {{ results | map(attribute='reason_code') | list | tojson }};
+
+        const values = {{ results | map(attribute='total_returns') | list | tojson }};
+
+        new Chart(
+            document.getElementById('returnChart'),
+
+            {
+                type: 'bar',
+
+                data: {
+
+                    labels: labels,
+
+                    datasets: [{
+
+                        label: 'Number of Returns',
+
+                        data: values
+
+                    }]
+
+                }
+
+            }
+        );
+
+    </script>
+
+    <br>
+
+    <a href="/">Home</a>
+
+</body>
+
+</html>
